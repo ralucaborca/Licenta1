@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "22069204077",
+    "project_id": "heart-rate-application",
+    "storage_bucket": "heart-rate-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22069204077:android:2f42181c3f4d782b6a5b64",
+        "android_client_info": {
+          "package_name": "com.example.heartrateapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22069204077-v9bkt8nje7vnusicnpi30d5terb7l745.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrr102PUGytvWw-Wf0j_eudxoRVEWXw0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22069204077-v9bkt8nje7vnusicnpi30d5terb7l745.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
