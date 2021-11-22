@@ -3,27 +3,33 @@ package com.example.heartrateapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.DatabaseErrorHandler;
 import android.os.Build;
 import android.os.Bundle;
+import android.renderscript.Script;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class SignUp extends AppCompatActivity{
     Button button_signup;
     TextView signup;
     EditText emails, passwords;
-    //FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // firebaseAuth=FirebaseAuth.getInstance();
+
         passwords=findViewById(R.id.edittext2);
         emails=findViewById(R.id.edittext);
         button_signup=findViewById(R.id.buttons);
@@ -31,7 +37,7 @@ public class SignUp extends AppCompatActivity{
 
         button_signup.setOnClickListener(new View.OnClickListener() {
 
-            //@android.support.annotation.RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
+
             @Override
             public void onClick(View v) {
                 String email=emails.getText().toString();
