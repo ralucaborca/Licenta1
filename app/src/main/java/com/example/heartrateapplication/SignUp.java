@@ -20,16 +20,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private Button button_signup;
     private TextView signup;
-    private EditText names, emails, passwords;
+    private EditText names = findViewById(R.id.edittextnume), emails, passwords;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-   //FirebaseDatabase database;
+    FirebaseDatabase database;
 
 
     @Override
@@ -38,7 +38,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_signup);
 
         mAuth=FirebaseAuth.getInstance();
-
 
         names=findViewById(R.id.edittextnume);
         passwords=findViewById(R.id.edittextmail);
@@ -50,6 +49,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         button_signup.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -62,45 +62,53 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private void registerUser() {
+    public void registerUser() {
             String email = emails.getText().toString().trim();
             String password = passwords.getText().toString().trim();
             String name = names.getText().toString().trim();
-             if(email.isEmpty()){
-                emails.setError("Introduceti adresa de e-mail!");
-                emails.requestFocus();
-                return;
-             }
-             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                emails.setError("Introduceti adresa de e-mail corecta!");
-                emails.requestFocus();
-                return;
-             }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            if(email.isEmpty()){
+               emails.setError("Introduceti adresa de e-mail!");
+               emails.requestFocus();
+               return;
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+               emails.setError("Introduceti adresa de e-mail corecta!");
+               emails.requestFocus();
+               return;
+            }
+        }
 
-             if(password.isEmpty()){
-                passwords.setError("Introducti parola corecta!");
-                passwords.requestFocus();
-                return;
-             }
-             if(password.length() < 6){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            if(password.isEmpty()){
+                    passwords.setError("Introducti parola corecta!");
+                    passwords.requestFocus();
+                    return;
+                 }
+        }
+        if(password.length() < 6){
                  passwords.setError("Prola trebuie sa contina minim 6 caractere!");
                  passwords.requestFocus();
                  return;
              }
 
-             if(name.isEmpty()){
-                names.setError("Introduceti numele complet!");
-                names.requestFocus();
-                return;
-             }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            if(name.isEmpty()){
+               names.setError("Introduceti numele complet!");
+               names.requestFocus();
+               return;
+            }
+        }
 
-             button_signup.setVisibility(View.VISIBLE);
+        button_signup.setVisibility(View.VISIBLE);
              mAuth.createUserWithEmailAndPassword(email,password)
                      .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if(task.isSuccessful()){
-                                 User user=new User(name,email);
+                                 User user=new User();
 
                                  FirebaseAuth.getInstance().getCurrentUser().getUid();
 
