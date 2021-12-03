@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -29,7 +30,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText names = findViewById(R.id.edittextnume), emails, passwords;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    FirebaseDatabase database;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -38,6 +40,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_signup);
 
         mAuth=FirebaseAuth.getInstance();
+        database= FirebaseDatabase.getInstance();
+        databaseReference= database.getReference();
 
         names=findViewById(R.id.edittextnume);
         passwords=findViewById(R.id.edittextmail);
@@ -94,13 +98,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                  return;
              }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+
             if(name.isEmpty()){
                names.setError("Introduceti numele complet!");
                names.requestFocus();
                return;
             }
-        }
+
 
         button_signup.setVisibility(View.VISIBLE);
              mAuth.createUserWithEmailAndPassword(email,password)
@@ -108,10 +112,26 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if(task.isSuccessful()){
-                                 User user=new User();
+                                 User user=new User(name,email);
 
-                                 FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                 FirebaseDatabase.getInstance().getReference("Users")
+                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                          .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                     @Override
+                                     public void onComplete(@NonNull Task<Void> task) {
+                                         if(task.isSuccessful()){
+                                             Toast.makeText(SignUp.this,"User-ul a fost inregistrat cu succes!", Toast.LENGTH_LONG).show();
+                                             progressBar.setVisibility(View.VISIBLE);
+                                         }else{
+                                             Toast.makeText(SignUp.this, "Inregistrarea nu a avut loc! Incercati din nou!", Toast.LENGTH_LONG).show();
+                                             progressBar.setVisibility(View.GONE);
+                                         }
+                                     }
+                                 });
 
+                             }else{
+                                 Toast.makeText(SignUp.this, "Inregistrarea nu a avut loc! Incercati din nou!", Toast.LENGTH_LONG).show();
+                                 progressBar.setVisibility(View.GONE);
                              }
                          }
                      });
