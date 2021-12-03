@@ -10,7 +10,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edittextl1"
+        android:id="@+id/mailTxt"
         android:ems="10"
         android:hint="Enter Username"
         android:gravity="center"
@@ -18,7 +18,7 @@
        />
 
     <EditText
-        android:id="@+id/edittextl2"
+        android:id="@+id/passTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -37,7 +37,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
