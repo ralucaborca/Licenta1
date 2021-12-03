@@ -1,14 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms:google-services'
-apply plugin: 'com.google.firebase:firebase-auth:19.4.0'
-apply plugin: 'com.google.firebase.auth.FirebaseAuth'
+apply plugin :'com.google.gms.google-services'
 
 android {
     compileSdk 30
 
     defaultConfig {
         applicationId "com.example.heartrateapplication"
-        minSdk 16
+        minSdk 26
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -26,16 +24,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    compileSdkVersion 30
 }
 
 dependencies {
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.firebase:firebase-database:20.0.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'com.google.firebase:firebase-auth:19.4.0'
+
 }
