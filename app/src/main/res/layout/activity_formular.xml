@@ -5,50 +5,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".DoctorClass">
+    tools:context=".User">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/text_numepacient"
         android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Nume:"
+        android:textSize="30dp"
+        android:text="Formular pacient:"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/text_prenumepacient"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Prenume:"
+        android:text="Introduceti varsta:"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/text_specializare"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Specializare:"
+        android:text="Introduceti greeutatea:"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/text_oras"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Oras:"
+        android:text="Introduceti pulsul:"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Introduceti inaltimea:"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Alte probleme de sanatate:"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Verificati lista pacientilor!"
+        android:layout_marginTop="20dp"
+        android:text="Trimiteti!"
         />
-
-
 </LinearLayout>
