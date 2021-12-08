@@ -5,8 +5,11 @@ import android.util.Patterns;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +23,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.CharArrayWriter;
+
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
     private EditText mail, password;
     private Button login;
+    private RadioGroup radioGroup;
+    private RadioButton user_select;
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -39,6 +46,9 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
         mail=(EditText) findViewById(R.id.mailTxt);
         password=(EditText) findViewById(R.id.passTxt);
+        radioGroup=findViewById(R.id.radioGroup);
+
+
 
     }
 
@@ -73,22 +83,35 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         }
         progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(emails,passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+         mAuth.signInWithEmailAndPassword(emails, passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     //redirect to user profile
-                    startActivity(new Intent(LogIn.this,PacientClass.class));
+                    startActivity(new Intent(LogIn.this, PacientClass.class));
 
-                }else{
+                } else {
                     Toast.makeText(LogIn.this, "Inregistrarea nu a avut loc! Incercati din nou!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
+
+
+
         });
     }
 
+
     @Override
-    public void onClick(View v) {}
+    public void onClick(View v) {
+        int u_select= radioGroup.getCheckedRadioButtonId();
+        user_select=findViewById(R.id.radio_medic);
+        StringBuffer result = new StringBuffer();
+        result.append("Rez ales!");
+        if(user_select != null){
+            progressBar.setVisibility(View.GONE);
+            result.append("\nProfesie: \n").append(user_select.getText().toString());
+        }
+    }
 
 }

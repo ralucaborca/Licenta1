@@ -10,6 +10,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:id="@+id/mailTxt"
         android:ems="10"
         android:hint="Enter Username"
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/textviws"
-        android:text="Not reistered? LogIn here!"
+        android:text="Nou esti inregistrat? Inregistreaza-te acum!"
         />
 
     <Button
@@ -42,6 +43,38 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="LOGIN"
-
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selectati:"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/text_select"
+        />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/radioGroup"
+        >
+
+        <RadioButton
+            android:id="@+id/radio_medic"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:gravity="center"
+            android:text="Medic" />
+
+        <RadioButton
+            android:id="@+id/radio_pacient"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:gravity="center"
+            android:text="Pacient" />
+    </RadioGroup>
+
 </LinearLayout>
