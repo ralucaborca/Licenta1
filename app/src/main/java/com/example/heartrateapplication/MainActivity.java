@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(this::onClick);
 
 
-
     }
     public void onClick(View v){
         switch (v.getId()){
