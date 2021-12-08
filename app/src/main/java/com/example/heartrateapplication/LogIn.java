@@ -88,7 +88,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //redirect to user profile
-                    startActivity(new Intent(LogIn.this, PacientClass.class));
+                    startActivity(new Intent());
 
                 } else {
                     Toast.makeText(LogIn.this, "Inregistrarea nu a avut loc! Incercati din nou!", Toast.LENGTH_LONG).show();
